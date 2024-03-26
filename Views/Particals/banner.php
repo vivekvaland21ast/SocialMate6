@@ -6,10 +6,10 @@
         <div class="max-w-sm mx-auto bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
             <div class="border-b px-4 pb-6">
                 <div class="text-center my-4">
-                    <img 
+                    <img src="data:image/jpeg;base64,<?php echo base64_encode($user[4]['profile']); ?>"
                         class="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800 mx-auto my-4"
-                        src="uploads/<?= isset ($user['profile']) ? $user['profile'] : 'default_profile.jpg' ?>"
                         alt="Profile Image" />
+
                     <div class="py-2">
                         <h3 class="font-bold text-2xl text-gray-800 dark:text-white mb-1">
                             <?php

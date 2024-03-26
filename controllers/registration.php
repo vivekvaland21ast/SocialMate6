@@ -22,7 +22,7 @@ if (isset ($_POST["register"])) {
         $profileFile = file_get_contents($_FILES["profileImage"]["tmp_name"]);
         $targetDir = "uploads/";
         $targetFile = $targetDir . basename($_FILES["profileImage"]["name"]);
-        //dd($targetFile);
+        $_SESSION['profile'] = $targetFile;
         if (move_uploaded_file($_FILES["profileImage"]["tmp_name"], $targetFile)) {
             $query1 = "INSERT INTO `registration_user`(`full_name`, `username`, `email`, `password`,`profile`, `verification_code`, `is_verified`) VALUES (?,?,?,?,?,?,?)";
             $db->query($query1, [$full_name, $username, $email, $password, $targetFile, $v_code, 0]);
