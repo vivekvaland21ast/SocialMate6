@@ -51,9 +51,9 @@ if (isset($_POST["login"])) {
     if ($result) {
         if (mysqli_num_rows($result) == 1) {
             $result_fetch = mysqli_fetch_assoc($result);
-            if ($result_fetch['is_verified'] == 1) {
                 if (password_verify($_POST['password'], $result_fetch['password'])) {
                     $_SESSION['logged_in'] = true;
+                    $_SESSION['user_id']= $result_fetch['user_id'];
                     $_SESSION['username'] = $result_fetch['username'];
                     header('location: /');
                 } else {
@@ -63,15 +63,7 @@ if (isset($_POST["login"])) {
                         window.location.href='login.php';
                     </script>";
                 }
-            } else {
-                echo "
-                <script>
-                    alert('$result_fetch[email] is not verified');
-                    window.location.href='login.php';
-                </script>";
-            }
-            //print_r($result_fetch);die();
-
+            
         } else {
             echo "
                 <script>

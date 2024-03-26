@@ -1,12 +1,14 @@
-<div class="p-3 flex items-center bg-white dark:bg-gray-900 justify-between border-t cursor-pointer hover:bg-gray-700">
+<div class="p-3 flex items-center bg-white dark:bg-gray-900 justify-between border-gray-700 border-t cursor-pointer hover:bg-gray-700">
     <div class="flex items-center">
-        <img class="rounded-full h-10 w-10" src="https://loremflickr.com/g/600/600/girl">
+        <img class="rounded-full h-10 w-10" src="https://loremflickr.com/g/600/600/boy">
         <div class="ml-2 flex flex-col">
             <div class="leading-snug text-sm text-gray-200 font-bold">
-                <? $users["full_name"] ?>
+                <?= $user['full_name']; 
+                
+                ?>
             </div>
             <div class="leading-snug text-xs text-gray-600">
-                <? echo "@" . $users["username"] ?>
+                <?=  "@" . $user['username'] ?>
             </div>
         </div>
     </div>

@@ -6,9 +6,10 @@ if (isset ($_POST['post'])) {
     if (isset ($_FILES["imageFile"]) && $_FILES["imageFile"]["error"] == 0) {
         $imageData = file_get_contents($_FILES["imageFile"]["tmp_name"]);
         $caption = $_POST['captionText'];
-        $db->query('INSERT INTO post (caption, image) VALUES (:caption, :image)', [
+        $db->query('INSERT INTO post (caption, image,user_id) VALUES (:caption, :image,:id)', [
             'caption' => $caption,
             'image' => $imageData,
+            'id' => $_SESSION['user_id']
         ]);
         echo "
         <div class='toast toast-end toast-middle'>

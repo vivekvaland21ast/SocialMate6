@@ -1,4 +1,4 @@
-<div class="flex gap-2 max-w-6xl sticky mt-20 mb-5 mx-auto">
+<div class="flex gap-2 max-w-6xl mt-20 mb-5 mx-auto">
     <!-- profile card -->
     <div class="w-1/4 px-3"> <!-- 20% width -->
         <!-- Content for the first grid -->
@@ -31,11 +31,11 @@
                 </div>
                 <div class="flex gap-2 px-2">
                     <button
-                        class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-bold hover:bg-blue-800 dark:hover:bg-blue-900 px-2 py-2">
+                        class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-semibold text-sm hover:bg-blue-800 dark:hover:bg-blue-900 px-2 py-2">
                         View Profile
                     </button>
                     <button
-                        class="flex-1 rounded-full border-2 border-gray-400 dark:border-gray-700 font-semibold text-black dark:text-white px- py-2">
+                        class="flex-1 rounded-full border-2 border-gray-400 dark:border-gray-700 font-semibold text-black text-sm dark:text-white py-2">
                         Edit
                     </button>
                 </div>
@@ -55,11 +55,11 @@
         <!-- Card end -->
     </div>
     <!-- post -->
-    <div class="w-3/6 px-2 scrollbar-y-auto max-h-screen scrollbar-hide overflow-auto"> <!-- 50% width -->
+    <div class="w-3/6 px-2 overflow-y-auto max-h-screen scrollbar-hide overflow-auto"> <!-- 50% width -->
         <!-- Content for the second grid -->
         <!-- Card start -->
         <?php
-        foreach ($posts as $post) {
+        foreach ($user_post as $post) {
             include 'Views/post.view.php';
         }
         ?>
@@ -67,20 +67,21 @@
     </div>
 
     <!-- recent post -->
-    <div class="w-1/4 px-3 scrollbar-y-auto max-h-screen scrollbar-hide"> <!-- 20% width -->
+    <div class="w-1/4 px-3"> <!-- 20% width -->
         <!-- Content for the third grid -->
         <!-- Card start -->
-        <div class="rounded-lg shadow-lg overflow-hidden max-w-lg w-full text-gray-800 dark:text-white"
-            style="height: 300px;">
+        <div class="max-w-sm mx-auto bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
             <!-- Reduced height -->
             <div class="text-gray-800 dark:text-white py-2 bg-white border-b dark:bg-gray-900 px-4">
                 <h2 class="font-bold text-xl">Top Users</h2>
             </div>
-            <?php
-            foreach ($users as $user) {
-                include 'Views/follow.view.php';
-            }
-            ?>
+            <div class="scrollbar-y-auto scrollbar-hide overflow-auto" style="height: 400px;">
+                <?php
+                foreach ($users as $user) {
+                    include 'Views/follow.view.php';
+                }
+                ?>
+            </div>
             <!-- Card end -->
         </div>
     </div>
