@@ -7,6 +7,4 @@ return [
         'dbname' => 'login',
         'charset' => 'utf8mb4'
     ],
-
-    //
 ];

@@ -22,6 +22,10 @@ class Database
 
         return $this;
     }
+    public function getLastInsertId()
+    {
+        return $this->connection->lastInsertId();
+    }
 
     public function get()
     {

@@ -26,7 +26,7 @@
                             <!-- login -->
                             <div role="tabpanel"
                                 class="tab-content p-10 block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-                                <form class="w-full max-w-md" action="login_register.php" method="POST">
+                                <form class="w-full max-w-md" action="/signin" method="POST">
                                     <div class="relative flex items-center">
                                         <span class="absolute">
                                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -91,8 +91,8 @@
                                                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                         </svg>
                                         <span> First verify Your Email Then Login.</span>
-                                        </div>
-                                        <!-- <div class="relative flex items-center mt-4">
+                                    </div>
+                                    <!-- <div class="relative flex items-center mt-4">
                         <span class="absolute">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 class="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24"
@@ -107,18 +107,18 @@
                             placeholder="Confirm Password">
                     </div> -->
 
-                                        <div class="mt-6">
-                                            <button name="login" type="submit"
-                                                class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                                                Log in
-                                            </button>
+                                    <div class="mt-6">
+                                        <button name="login" type="submit"
+                                            class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                                            Log in
+                                        </button>
 
-                                            <!-- <div class="mt-6 text-center ">
+                                        <!-- <div class="mt-6 text-center ">
                             <a href="#" class="text-sm text-blue-500 hover:underline dark:text-blue-400">
                                 Already have an account?
                             </a>
                         </div> -->
-                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -126,7 +126,7 @@
                             <!-- sign up -->
                             <div role="tabpanel"
                                 class="tab-content p-10 block font-sans text-base antialiased font-light leading-relaxed text-inherit">
-                                <form class="w-full max-w-md" action="login_register.php" method="POST">
+                                <form class="w-full max-w-md" action="/register" method="POST" enctype="multipart/form-data">
                                     <div class="relative flex items-center">
                                         <span class="absolute">
                                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -155,18 +155,6 @@
                                             class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                             placeholder="Username">
                                     </div>
-                                    <!-- <label for="dropzone-file"
-                        class="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer dark:border-gray-600 dark:bg-gray-900">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-300 dark:text-gray-500"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                        </svg>
-
-                        <h2 class="mx-3 text-gray-400">Profile Photo</h2>
-
-                        <input id="dropzone-file" type="file" class="hidden" />
-                    </label> -->
 
                                     <div class="relative flex items-center mt-6">
                                         <span class="absolute">
@@ -197,6 +185,19 @@
                                             class="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                             placeholder="Password">
                                     </div>
+                                    <label for="dropzone-file"
+                                        class="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer dark:border-gray-600 dark:bg-gray-900">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="w-6 h-6 text-gray-300 dark:text-gray-500" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                                        </svg>
+
+                                        <!-- <h2 class="mx-3 text-gray-400">Profile Photo</h2> -->
+
+                                        <input id="dropzone-file" name="profileImage" type="file" />
+                                    </label>
 
                                     <!-- <div class="relative flex items-center mt-4">
                         <span class="absolute">
