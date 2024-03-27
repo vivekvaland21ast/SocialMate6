@@ -16,27 +16,27 @@ if (isset($_GET['email']) && isset($_GET['v_code'])) {
                 echo "
                 <script>
                     alert('Email verification successful');
-                    window.location.href='login.php';
+                    window.location.href='/login';
                 </script>";
             } else {
                 echo "
                 <script>
                     alert('Failed to verify email');
-                    window.location.href='login.php';
+                    window.location.href='/login';
                 </script>";
             }
         } else {
             echo "
             <script>
                 alert('Email already registered');
-                window.location.href='login.php';
+                window.location.href='/login';
             </script>";
         }
     } else {
         echo "
         <script>
             alert('Email not found or verification code is incorrect');
-            window.location.href='login.php';
+            window.location.href='/login';
         </script>";
     }
 }

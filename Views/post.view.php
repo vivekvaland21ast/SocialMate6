@@ -1,7 +1,8 @@
 <div class="max-w-xl mx-auto dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg mb-4">
     <div class="flex items-center justify-between px-4 py-3">
         <div class="flex items-center">
-            <img class="h-8 w-8 rounded-full" src="https://picsum.photos/id/1027/150/150" />
+            <img class="h-8 w-8 rounded-full"
+            src="<?php echo ($profilePath[0]["profile"]) ? $profilePath[0]["profile"] : 'uploads/default.png' ?>" />
             <div class="ml-3">
                 <span class="text-md font-semibold antialiased block leading-tight">
                     <?php

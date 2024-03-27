@@ -6,14 +6,14 @@
         <div class="max-w-sm mx-auto bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
             <div class="border-b px-4 pb-6">
                 <div class="text-center my-4">
-                    <img src="data:image/jpeg;base64,<?php echo base64_encode($user[4]['profile']); ?>"
+                    <img src="<?php echo ($profilePath[0]["profile"]) ? $profilePath[0]["profile"] : 'uploads/default.png' ?>"
                         class="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800 mx-auto my-4"
                         alt="Profile Image" />
 
                     <div class="py-2">
                         <h3 class="font-bold text-2xl text-gray-800 dark:text-white mb-1">
                             <?php
-                            if (isset ($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
+                            if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
                                 echo "                   
                                     $_SESSION[username]
                             ";
@@ -31,10 +31,13 @@
                     </div>
                 </div>
                 <div class="flex gap-2 px-2">
-                    <button
-                        class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-semibold text-sm hover:bg-blue-800 dark:hover:bg-blue-900 px-2 py-2">
-                        View Profile
-                    </button>
+                    <a href="/profile">
+                        <button
+                            class="flex-1 rounded-full bg-blue-600 dark:bg-blue-800 text-white dark:text-white antialiased font-semibold text-sm hover:bg-blue-800 dark:hover:bg-blue-900 px-2 py-2">
+                            View Profile
+                        </button>
+                    </a>
+
                     <button
                         class="flex-1 rounded-full border-2 border-gray-400 dark:border-gray-700 font-semibold text-black text-sm dark:text-white py-2">
                         Edit
@@ -56,12 +59,21 @@
         <!-- Card end -->
     </div>
     <!-- post -->
-    <div class="w-3/6 px-2 overflow-y-auto max-h-screen scrollbar-hide overflow-auto"> <!-- 50% width -->
+    <div class="w-3/6 px-2 overflow-y-auto max-h-screen scrollbar-hide"> <!-- 50% width -->
         <!-- Content for the second grid -->
         <!-- Card start -->
         <?php
-        foreach ($user_post as $post) {
-            include 'Views/post.view.php';
+        if (empty($user_post)) {
+            echo "
+            <div class='relative'>
+        <img src='uploads/no_post.png' class='h-60 w-60 mt-20  mx-auto my-4' />
+    </div>
+    <div class='text-2xl font-bold text-gray-700 dark:text-gray-300 mx-auto text-center mt-2 my-4'>You do not have any post</div>
+            ";
+        } else {
+            foreach ($user_post as $post) {
+                include 'Views/post.view.php';
+            }
         }
         ?>
         <!-- Card end -->

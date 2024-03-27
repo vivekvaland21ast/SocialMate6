@@ -2,8 +2,8 @@
 require_once 'config.php';
 require_once 'Database.php';
 
-$dbConfig = require 'config.php';
-$db = new Database($dbConfig['database']);
+$config = require 'config.php';
+$db = new Database($config['database']);
 
 if (isset ($_POST["login"])) {
     $query = "SELECT * FROM `registration_user` WHERE username=?";
@@ -19,11 +19,11 @@ if (isset ($_POST["login"])) {
             header('location: /');
             exit;
         } else {
-            echo "<script>alert('Password is invalid');window.location.href='login.php';</script>";
+            echo "<script>alert('Password is invalid');window.location.href='/login';</script>";
             exit;
         }
     } else {
-        echo "<script>alert('User is not registered');window.location.href='login.php';</script>";
+        echo "<script>alert('User is not registered');window.location.href='/login';</script>";
         exit;
     }
 }

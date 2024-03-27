@@ -11,8 +11,9 @@ $routes = [
     '/edit' => 'controllers/edit.php',
     '/register' => 'controllers/registration.php',
     '/signin' => 'controllers/signin.php',
-    '/login' => 'login.php',
-    '/logout' => 'logout.php',
+    '/login' => 'controllers/login.php',
+    '/logout' => 'controllers/logout.php',
+    '/profile' => 'controllers/profile.php',
     '/verify' => 'verify.php',
 ];
 
