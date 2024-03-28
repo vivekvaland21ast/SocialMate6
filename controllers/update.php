@@ -19,5 +19,5 @@ if (!empty($_FILES["imageFile"]["tmp_name"])) {
     ]);
 }
 
-header('location: /');
+header('location: /profile');
 die();

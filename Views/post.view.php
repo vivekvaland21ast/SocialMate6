@@ -1,19 +1,22 @@
 <div class="max-w-xl mx-auto dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg mb-4">
-    <div class="flex items-center justify-between px-4 py-3">
+    <div class="flex items-center justify-between px-4 py-3 border-b">
         <div class="flex items-center">
             <img class="h-8 w-8 rounded-full"
-            src="<?php echo ($profilePath[0]["profile"]) ? $profilePath[0]["profile"] : 'uploads/default.png' ?>" />
+                src="<?php echo ($mainPost["profile"]) ? $mainPost["profile"] : 'uploads/default.png' ?>" />
             <div class="ml-3">
                 <span class="text-md font-semibold antialiased block leading-tight">
-                    <?php
-                    if (isset ($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
+
+                    <!-- if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
                         echo "                   
                                     $_SESSION[username]
                             ";
-                    }
-                    ?>
+                    } -->
+                    <?= $mainPost['full_name'] ?>
+
                 </span>
-                <span class="text-gray-300 text-sm block">Asheville, North Carolina</span>
+                <span class="text-gray-500 text-sm block">
+                    <?= "@" . $mainPost['username'] ?>
+                </span>
             </div>
         </div>
         <div class="relative">
@@ -27,7 +30,7 @@
                 </button>
                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                     <li>
-                        <a href="#my_modal_2" class="flex items-center rounded-t  py-2 px-4 block whitespace-no-wrap">
+                        <a href="" class="flex items-center rounded-t  py-2 px-4 block whitespace-no-wrap">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                                 fill="currentColor">
                                 <path
@@ -37,8 +40,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/delete?id=<?php echo $post['id']; ?>"
-                            class="flex items-center py-2 px-4 block whitespace-no-wrap"
+                        <a href="" class="flex items-center py-2 px-4 block whitespace-no-wrap"
                             onclick="return confirm('Are you sure you want to delete this post?')">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                                 fill="currentColor">
@@ -54,45 +56,9 @@
             </div>
         </div>
     </div>
-    <!-- update modal -->
-    <dialog id="my_modal_2" class="modal">
-        <div class="modal-box">
-            <form method="dialog">
-                <div class="modal-action">
-                    <a href="#" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</a>
-                </div>
-            </form>
-            <h3 class="font-bold text-lg">Update your post</h3>
-            <form class="p-4 md:p-5" method="POST" action="/update?id=<?php echo $post['id']; ?>"
-                enctype="multipart/form-data">
-                <div class="grid gap-4 mb-4 grid-cols-2">
-                    <div class="col-span-2">
-                        <!-- <label for="name"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label> -->
-                        <input type="file" name="imageFile" value="<?php echo htmlspecialchars($post['image']); ?>"
-                            class="file-input file-input-bordered file-input-primary w-full file-input-sm max-w-xs" />
-                    </div>
-                    <div class="col-span-2">
-                        <textarea id="description" rows="4" name="captionText"
-                            class="textarea textarea-primary block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-blue-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="What's on your mind!!!"><?php echo htmlspecialchars($post['caption']); ?></textarea>
-                    </div>
-                </div>
-                <button type="submit" name="update_post"
-                    class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    Update
-                </button>
-            </form>
-        </div>
-    </dialog>
+
     <div class="relative">
-        <img src="data:image/jpeg;base64,<?= base64_encode($post['image']) ?>" class="w-full" />
+        <img src="data:image/jpeg;base64,<?= base64_encode($mainPost['image']) ?>" class="w-full" />
     </div>
     <div class="flex items-center justify-between mx-4 mt-3 mb-2">
         <div class="flex gap-5">
@@ -120,12 +86,17 @@
             </svg>
         </div>
     </div>
-    <div class="font-semibold text-md mx-4 mt-2 mb-3 text-red-500">
-        <span class="font-semibold text-md text-warning">braydoncoyer</span>
+    <div class="font-semibold text-md mx-4 mt-2 text-primary">92,372 likes</div>
+    <div class="font-semibold text-md mx-4 mb-3 text-red-500">
+        <span class="font-semibold text-md text-warning">
+            <?= $mainPost['username'] ?>
+        </span>
         <span class="text-sm text-gray-300">
-            <?= $post['caption'] ?>
+            <?= $mainPost['caption'] ?>
+        </span>
+        <span class="text-gray-500 text-sm block">
+        <?= $mainPost['time'] ?>
         </span>
     </div>
-    <div class="font-semibold text-md mx-4 mt-2 mb-4 text-primary">92,372 likes</div>
-
 </div>
+

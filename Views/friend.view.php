@@ -7,7 +7,7 @@
     <div class="h-full px-3 pb-4 overflow-y-auto shadow-lg shadow-gray-600 bg-base-100">
 
         <div class="hero-content flex-row lg:flex-col">
-            <img src="<?php echo ($profilePath[0]["profile"]) ? $profilePath[0]["profile"] : 'uploads/default.png' ?>"
+            <img src="<?php echo ($profilePath[$post_id]["profile"]) ? $profilePath[$post_id]["profile"] : 'uploads/default.png' ?>"
                 class="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800" alt="Profile Image" />
 
             <div class="">

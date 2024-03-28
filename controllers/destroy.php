@@ -8,10 +8,10 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['id'])) {
     $db = new Database($config['database']);
     $db->query('DELETE FROM post WHERE id = :id', ['id' => $id]);
 
-    header('Location: /');
+    header('Location: /profile');
     exit();
 } else {
-    header('Location: /');
+    header('Location: /profile');
     exit();
 }
 

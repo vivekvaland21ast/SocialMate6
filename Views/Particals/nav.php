@@ -1,12 +1,29 @@
 <nav class="navbar bg-base-100 w-full fixed top-0 h-10 z-50 shadow-lg">
     <div class="navbar-start px-3">
-        <button
+        <!-- <button
+            class="text-white inline-flex items-center bg-warning-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            onclick="my_modal_3.showModal()">+ Add Post</button> -->
+        <!-- Reduced height -->
+
+        <?php
+        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
+            echo '
+                        <button
             class="text-white inline-flex items-center bg-warning-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             onclick="my_modal_3.showModal()">+ Add Post</button>
-        <!-- Reduced height -->
+                    ';
+        }
+        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] != true) {
+            echo '
+                        <button
+            class="text-white inline-flex items-center bg-warning-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            onclick="my_modal_3.showModal()">+ Add Post</button>
+                    ';
+        }
+        ?>
     </div>
     <div class="navbar-center hidden lg:flex text-3xl font-semibold cursor-pointer"><a href="/">
-            <a class="text-primary">S</a>ocial<a class="text-secondary">M</a>ate
+            <span class="text-primary">S</span>ocial<span class="text-secondary">M</span>ate
         </a>
     </div>
 
@@ -14,7 +31,7 @@
     <div class="navbar-end py-2">
         <!-- Search -->
         <div class="form-control">
-            <input type="text" placeholder="Search" class="input input-bordered input-info w-full max-w-xs h-10" />
+            <input type="search" placeholder="Search" class="input input-bordered input-info w-full max-w-xs h-10" />
         </div>
         <!-- search button -->
         <button class="btn btn-ghost btn-circle">
@@ -77,10 +94,11 @@
                             <button type='button' class='text-white inline-flex items-center bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800'>Logout</button></a>
                 
                     ";
-        } else {
+        }
+        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] != true) {
             echo "
                         <a href='/login'>
-                        <button type='button' class='text-white inline-flex items-center bg-warning-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>Login</button></a>
+                        <button type='button' class='text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>Login</button></a>
             ";
         }
         ?>
@@ -88,10 +106,9 @@
         <!-- Profile -->
         <div class="dropdown dropdown-end px-4">
             <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-                <div class="w-10 rounded-full">
-                    <img alt="Profile"
-                        src="<?php echo ($profilePath[0]["profile"]) ? $profilePath[0]["profile"] : 'uploads/default.png' ?>" />
-                </div>
+                <img src="<?php echo ($profilePath[0]["profile"]) ? $profilePath[0]["profile"] : "uploads/default.png" ?>"
+                    class="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800 mx-auto"
+                    alt="Profile Image" />
             </div>
             <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
@@ -139,9 +156,5 @@
                 </form>
             </div>
         </dialog>
-
-
-
-
     </div>
 </nav>

@@ -14,6 +14,7 @@ $routes = [
     '/login' => 'controllers/login.php',
     '/logout' => 'controllers/logout.php',
     '/profile' => 'controllers/profile.php',
+    '/friend' => 'controllers/friend.php',
     '/verify' => 'verify.php',
 ];
 
