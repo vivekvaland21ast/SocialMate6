@@ -101,3 +101,39 @@
         </form>
     </div>
 </dialog>
+
+<!-- image post without blob -->
+<?php
+
+$config = require ('config.php');
+$db = new Database($config['database']);
+
+if (isset($_POST['post'])) {
+    if (isset($_FILES["imageFile"]) && $_FILES["imageFile"]["error"] == 0) {
+        $targetDir = "uploads/";
+        $targetFile = $targetDir . basename($_FILES["imageFile"]["name"]);
+        if (move_uploaded_file($_FILES["imageFile"]["tmp_name"], $targetFile)) {
+            $caption = $_POST['captionText'];
+            $imageData = $targetFile; // Store the path to the image file
+            $db->query('INSERT INTO post (caption, image, user_id) VALUES (:caption, :image, :id)', [
+                'caption' => $caption,
+                'image' => $imageData,
+                'id' => $_SESSION['user_id']
+            ]);
+            echo "
+            <div class='toast toast-end toast-middle'>
+                <div class='alert alert-success'>
+                    <span>Post uploaded successfully.</span>
+                </div>
+            </div>
+            ";
+            exit(); // Exit after successful upload
+        } else {
+            echo "Error uploading file.";
+        }
+    } else {
+        echo "No file uploaded or file upload error occurred.";
+    }
+} else {
+    echo "Form not submitted.";
+}

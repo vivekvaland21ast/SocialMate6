@@ -7,7 +7,7 @@
 
     <?php
     //dd($user);
-    foreach ($user as $user_side) {
+    foreach ($users_post as $user_side) {
         include 'Views/friend.side.view.php';
     }
     ?>
@@ -18,8 +18,18 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <?php
                 //dd($user);
-                foreach ($user as $user_post) {
-                    include 'Views/friend.photos.view.php';
+                
+                foreach ($users_post as $user_post) {
+                    if (empty($user_post)) {
+                        echo "
+                    <div class='relative object-center'>
+                        <img src='uploads/no_post.png' class='h-60 w-60 mt-20  mx-auto my-4' />
+                        <div class='text-2xl font-bold text-gray-700 dark:text-gray-300 mx-auto text-center mt-2 my-4'>You do not have any post</div>
+                    </div>
+                    ";
+                    } else {
+                        include 'Views/friend.photos.view.php';
+                    }
                 }
                 ?>
             </div>

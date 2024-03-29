@@ -1,5 +1,5 @@
 <div
-    class="p-3 flex items-center bg-white dark:bg-gray-900 justify-between border-gray-700 border-t cursor-pointer hover:bg-gray-700">
+    class="p-2 flex items-center bg-white dark:bg-gray-900 justify-between border-gray-700 border-t cursor-pointer hover:bg-gray-700">
     <div class="flex items-center">
         <!-- <img class="rounded-full h-10 w-10" src="https://loremflickr.com/g/600/600/boy"> -->
         <img class="h-10 w-10 rounded-full border-4 border-white dark:border-gray-800 mx-auto my-4"
@@ -20,7 +20,7 @@
             class="h-8 px-3 text-sm font-bold text-blue-400 border border-blue-400 rounded-full hover:bg-blue-100 hover:text-black">View</button>
     </a> -->
     <button
-        class="view-btn h-8 px-3 text-sm font-bold text-blue-400 border border-blue-400 rounded-full hover:bg-blue-100 hover:text-black"
+        class="view-btn h-8 px-5 mr-4 text-sm font-bold text-blue-400 border border-blue-400 rounded-full hover:bg-blue-100 hover:text-black"
         data-user-id="<?php echo $user['user_id']; ?>">
         View
     </button>

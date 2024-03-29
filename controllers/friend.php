@@ -16,7 +16,7 @@ $profilePath = $db->query("SELECT * from registration_user where user_id = '$pos
 
 if (isset($_REQUEST['user_id'])) {
     $request_userId = $_REQUEST['user_id'];
-    $user = $db->query("SELECT * from post INNER JOIN registration_user on post.user_id = registration_user.user_id where registration_user.user_id='$request_userId'")->get();
+    $users_post = $db->query("SELECT * from post INNER JOIN registration_user on post.user_id = registration_user.user_id where registration_user.user_id='$request_userId'")->get();
     $count = $db->query("SELECT count(user_id) from post where user_id = '$request_userId'")->get();
 }
 require "Views/friend.view.php";

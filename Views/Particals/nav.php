@@ -1,4 +1,4 @@
-<nav class="navbar bg-base-100 w-full fixed top-0 h-10 z-50 shadow-lg">
+<nav class="navbar bg-base-100 w-full fixed top-0 h-10 z-50 shadow-lg overflow-hidden">
     <div class="navbar-start px-3">
         <!-- <button
             class="text-white inline-flex items-center bg-warning-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -77,8 +77,8 @@
                     <div class="card-body">
                         <span class="font-bold text-lg">Your notifications</span>
                         <span class="text-info">Subtotal: $999</span>
-                        <div class="card-actions">
-                            <button class="btn btn-primary btn-block">View all</button>
+                        <div class="card-actions"><a href="Views/chat.view.php">
+                            <button class="btn btn-primary btn-block">View all</button></a>
                         </div>
                     </div>
                 </div>

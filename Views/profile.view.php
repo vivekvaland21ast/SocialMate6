@@ -28,7 +28,8 @@
             </div>
         </div>
 
-        <div class="shadow max-w-sm mx-auto bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg shadow-gray-800">
+        <div
+            class="shadow max-w-sm mx-auto bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg shadow-gray-800">
 
             <div class="stat">
                 <div class="stat-figure text-primary">
@@ -82,17 +83,8 @@
         <section class="max-w-6xl mx-auto">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <?php
-                if (empty($user_post)) {
-                    echo "
-            <div class='relative object-center'>
-        <img src='uploads/no_post.png' class='h-60 w-60 mt-20  mx-auto my-4' />
-        <div class='text-2xl font-bold text-gray-700 dark:text-gray-300 mx-auto text-center mt-2 my-4'>You do not have any post</div>
-    </div>
-            ";
-                } else {
-                    foreach ($user_post as $post) {
-                        include 'Views/photos.view.php';
-                    }
+                foreach ($user_post as $post) {
+                    include 'Views/photos.view.php';
                 }
                 ?>
             </div>
