@@ -15,8 +15,13 @@
             </div>
         </div>
     </div>
-    <a href="">
+    <!-- <a href="/friend">
         <button
-            class="h-8 px-3 text-sm font-bold text-blue-400 border border-blue-400 rounded-full hover:bg-blue-100 hover:text-black">Follow</button>
-    </a>
+            class="h-8 px-3 text-sm font-bold text-blue-400 border border-blue-400 rounded-full hover:bg-blue-100 hover:text-black">View</button>
+    </a> -->
+    <button
+        class="view-btn h-8 px-3 text-sm font-bold text-blue-400 border border-blue-400 rounded-full hover:bg-blue-100 hover:text-black"
+        data-user-id="<?php echo $user['user_id']; ?>">
+        View
+    </button>
 </div>

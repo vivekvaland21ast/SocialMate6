@@ -15,6 +15,6 @@ $mainPosts = $db->query("SELECT * from post INNER JOIN registration_user on post
 //dd($mainPost);
 //dd($profilePath[0]["profile"]);
 //dd($users["profile"]);
-
+//dd($mainPosts["username"]);
 
 require "Views/index.view.php";
