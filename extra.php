@@ -137,3 +137,171 @@ if (isset($_POST['post'])) {
 } else {
     echo "Form not submitted.";
 }
+
+
+
+// like dislike button
+
+             // liked 
+            <i <?php if (userLiked($mainPost['id'])): ?> class="fa fa-thumbs-up like-btn" <?php else: ?>
+                    class="fa fa-thumbs-o-up like-btn" <?php endif ?> data-id="<?php echo $mainPost['id'] ?>">
+            </i>
+            <span>>
+                <?php echo getLikes($mainPost['id']); ?>
+            </span>
+
+            <!-- disliked -->
+            <i <?php if (userLiked($mainPost['id'])): ?> class="fa fa-thumbs-down like-btn" <?php else: ?>
+                    class="fa fa-thumbs-o-down dislike-btn" <?php endif ?> data-id="<?php echo $mainPost['id'] ?>">
+            </i>
+            <span>>
+                <?php echo getDislikes($mainPost['id']); ?>
+            </span>
+
+<!-- like.php -->
+
+<?php
+
+$conn = mysqli_connect('localhost', 'root', '', 'login');
+
+$user_id = $_SESSION['user_id'];
+
+if (!$conn) {
+    die("Error connecting to database : " . mysqli_connect_error($conn));
+    exit();
+}
+
+if (isset($_POST['action'])) {
+    $post_id = $_POST['post_id'];
+    $action = $_POST['action'];
+    switch ($action) {
+        case 'like':
+            $sql = "INSERT into post_likes(user_id,post_id,liked) VALUES ($user_id,$post_id,'like') ON DUPLICATE KEY UPDATE liked='like'";
+            break;
+        case 'dislike':
+            $sql = "INSERT into post_likes(user_id,post_id,liked) VALUES ($user_id,$post_id,'dislike') ON DUPLICATE KEY UPDATE liked='dislike'";
+            break;
+        case 'unlike':
+            $sql = "DELETE from post_likes where user_id=$user_id AND post_id=$post_id";
+            break;
+        case 'undislike':
+            $sql = "DELETE from post_likes where user_id=$user_id AND post_id=$post_id";
+            break;
+        default:
+            break;
+    }
+    mysqli_query($conn, $sql);
+    echo getRating($post_id);
+    exit(0);
+}
+
+//dd($post_id);
+function userLiked($post_id)
+{
+
+    global $conn;
+    global $post_id;
+    $sql = "SELECT * from post_likes where user_id =$post_id AND post_id=$post_id AND liked='like'";
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+function getLikes($id)
+{
+    global $conn;
+    $sql = "SELECT COUNT(*) from post_likes WHERE post_id = $id AND liked = 'like'";
+    $rs = mysqli_query($conn, $sql);
+    $result = mysqli_fetch_array($rs);
+    return $result[0];
+}
+
+function getDislikes($id)
+{
+    global $conn;
+    $sql = "SELECT COUNT(*) from post_likes WHERE post_id = $id AND liked = 'dislike'";
+    $rs = mysqli_query($conn, $sql);
+    $result = mysqli_fetch_array($rs);
+    return $result[0];
+}
+
+function getRating($id)
+{
+    global $conn;
+    $likes_query = "SELECT COUNT(*) from post_likes WHERE post_id = $id AND liked = 'like'";
+    $dislikes_query = "SELECT COUNT(*) from post_likes WHERE post_id = $id AND liked = 'dislike'";
+    $likes_rs = mysqli_query($conn, $likes_query);
+    $dislikes_rs = mysqli_query($conn, $dislikes_query);
+    $likes = mysqli_fetch_array($likes_rs);
+    $dislikes = mysqli_fetch_array($dislikes_rs);
+    $rating = [
+        'likes' => $likes[0],
+        'dislikes' => $dislikes[0],
+    ];
+    return json_encode($rating);
+}
+
+$mainPosts = "SELECT * from post INNER JOIN registration_user on post.user_id = registration_user.user_id order by post.time DESC";
+$result = mysqli_query($conn, $mainPosts);
+$posts1 = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+// like.js
+<script>
+    // let likeBtn = document.querySelector('.like-btn');
+
+    // function toggleLike() {
+    //     likeBtn.classList.toggle('active');
+
+    //     // Toggle Font Awesome class for the 
+    //     // thumbs-up and thumbs-down icons 
+    //     if (likeBtn.classList.contains('active')) {
+    //         likeBtn.innerHTML =
+    //             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ff0000" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>';
+    //     } else {
+    //         likeBtn.innerHTML =
+    //             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ffffff" d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8v-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5v3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20c0 0-.1-.1-.1-.1c0 0 0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5v3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2v-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"/></svg>';
+    //     }
+    // } 
+    $(document).ready(function () {
+        $('.like-btn').on('click', function () {
+            var post_id = $(this).data('id');
+            $clicked_btn = $(this);
+
+            if ($clicked_btn.hasClass('fa-thumbs-o-up')) {
+                action = 'like';
+            } else if ($clicked_btn.hasClass('fa-thumbs-up')) {
+                action = 'unlike';
+            }
+            $.ajax({
+                url: 'index.php',
+                type: 'post',
+                data: {
+                    'action': action,
+                    'post_id': post_id
+                },
+                success: function (data) {
+                    res = JSON.parse(data);
+                    if (action == 'like') {
+                        $clicked_btn.removeClass('fa-thumbs-o-up');
+                        $clicked_btn.addClass('fa-thumbs-up');
+                    }
+                    else if (action == 'unlike') {
+                        $clicked_btn.removeClass('fa-thumbs-up');
+                        $clicked_btn.addClass('fa-thumbs-o-up');
+                    }
+                    $clicked_btn.siblings('span.likes').text(res.likes);
+                    $clicked_btn.siblings('span.dislikes').text(res.dislikes);
+
+                    $clicked_btn.siblings('i.fa-thumbs-down').removeClass('fa-thumbs-down').addClass('fa-thumbs-o-down');
+                }
+            });
+        });
+    });
+</script>
+
+<button class="like-button bg-primary" data-post-id="<?php echo $mainPost['id']; ?>"
+                    data-user-id="<?php echo $mainPost['user_id']; ?>">Like</button>

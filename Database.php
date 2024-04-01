@@ -22,10 +22,7 @@ class Database
 
         return $this;
     }
-    public function getLastInsertId()
-    {
-        return $this->connection->lastInsertId();
-    }
+
 
     public function get()
     {
@@ -37,14 +34,14 @@ class Database
         return $this->statement->fetch();
     }
 
-    public function findOrFail()
-    {
-        $result = $this->find();
+    // public function findOrFail()
+    // {
+    //     $result = $this->find();
 
-        if (! $result) {
-            abort();
-        }
+    //     if (! $result) {
+    //         abort();
+    //     }
 
-        return $result;
-    }
+    //     return $result;
+    // }
 }

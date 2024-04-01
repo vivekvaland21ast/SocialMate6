@@ -1,14 +1,14 @@
 <?php
 
-$config = require('config.php');
+$config = require ('config.php');
 $db = new Database($config['database']);
 
 $post_id = $_SESSION['user_id'];
 $posts = $db->query('select * from post order by id DESC')->get();
 $users = $db->query("SELECT * from registration_user where user_id<>'$post_id'")->get();
-
+$like = $db->query("SELECT * from post INNER JOIN registration_user on post.user_id = registration_user.user_id")->get();
 //$profile = $_SESSION['profile'];
-
+//dd($like[0]['id']);
 $user_post = $db->query("SELECT * from post INNER JOIN registration_user on post.user_id = registration_user.user_id where post.user_id = '$post_id'")->get();
 $profilePath = $db->query("SELECT * from registration_user where user_id = '$post_id'")->get();
 $mainPosts = $db->query("SELECT * from post INNER JOIN registration_user on post.user_id = registration_user.user_id order by post.time DESC")->get();
@@ -16,5 +16,7 @@ $mainPosts = $db->query("SELECT * from post INNER JOIN registration_user on post
 //dd($profilePath[0]["profile"]);
 //dd($users["profile"]);
 //dd($mainPosts["username"]);
-
+if (empty($_SESSION['logged_in'])) {
+    header("location: /login");
+}
 require "Views/index.view.php";

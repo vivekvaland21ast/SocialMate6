@@ -9,8 +9,9 @@ if (isset ($_POST["login"])) {
     $query = "SELECT * FROM `registration_user` WHERE username=?";
     $statement = $db->query($query, [$_POST['email_username']]);
     $result = $statement->find();
-
+    
     if ($result) {
+        //dd($result);
         if (password_verify($_POST['password'], $result['password'])) {
             session_start();
             $_SESSION['logged_in'] = true;

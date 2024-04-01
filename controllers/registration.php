@@ -16,15 +16,15 @@ if (isset ($_POST["register"])) {
         $username = $_POST['username'];
         $email = $_POST['email'];
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        $v_code = bin2hex(random_bytes(16));
-        $_SESSION['profile']= $_POST['profile'];
+        //$v_code = bin2hex(random_bytes(16));
+        //$_SESSION['profile']= $_POST['profile'];
         $profileFile = file_get_contents($_FILES["profileImage"]["tmp_name"]);
         $targetDir = "uploads/";
         $targetFile = $targetDir . basename($_FILES["profileImage"]["name"]);
         $_SESSION['profile'] = $targetFile;
         if (move_uploaded_file($_FILES["profileImage"]["tmp_name"], $targetFile)) {
-            $query1 = "INSERT INTO `registration_user`(`full_name`, `username`, `email`, `password`,`profile`, `verification_code`, `is_verified`) VALUES (?,?,?,?,?,?,?)";
-            $db->query($query1, [$full_name, $username, $email, $password, $targetFile, $v_code, 0]);
+            $query1 = "INSERT INTO `registration_user`(`full_name`, `username`, `email`, `password`,`profile`) VALUES (?,?,?,?,?)";
+            $db->query($query1, [$full_name, $username, $email, $password, $targetFile]);
 
             echo "<script>alert('Registration successful');window.location.href='/login';</script>";
         } else {

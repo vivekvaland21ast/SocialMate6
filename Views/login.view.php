@@ -39,7 +39,7 @@
 
                                         <input type="text" name="email_username"
                                             class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                                            placeholder="Username">
+                                            placeholder="Username" require>
                                     </div>
 
                                     <div class="relative flex items-center mt-4">
@@ -54,7 +54,7 @@
 
                                         <input type="password" name="password"
                                             class="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                                            placeholder="Password">
+                                            placeholder="Password" require>
                                     </div>
                                     <div class="relative flex items-center mt-4">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -98,7 +98,7 @@
 
                                         <input type="text" name="fullname"
                                             class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                                            placeholder="Fullname">
+                                            placeholder="Fullname" require>
                                     </div>
                                     <div class="relative flex items-center mt-6">
                                         <span class="absolute">
@@ -112,7 +112,7 @@
 
                                         <input type="text" name="username"
                                             class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                                            placeholder="Username">
+                                            placeholder="Username" require>
                                     </div>
 
                                     <div class="relative flex items-center mt-6">
@@ -127,7 +127,7 @@
 
                                         <input type="email" name="email"
                                             class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                                            placeholder="Email address">
+                                            placeholder="Email address" require>
                                     </div>
 
                                     <div class="relative flex items-center mt-4">
@@ -142,7 +142,7 @@
 
                                         <input type="password" name="password"
                                             class="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                                            placeholder="Password">
+                                            placeholder="Password" require>
                                     </div>
                                     <label for="dropzone-file"
                                         class="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer dark:border-gray-600 dark:bg-gray-900">
@@ -155,7 +155,8 @@
 
                                         <h2 class="mx-3 text-gray-400">Profile Photo</h2>
 
-                                        <input id="dropzone-file" name="profileImage" type="file" class="hidden"/>
+                                        <input id="dropzone-file" name="profileImage" type="file" class="hidden"
+                                            require />
                                     </label>
 
                                     <div class="mt-6">
